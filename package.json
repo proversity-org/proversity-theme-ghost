@@ -1,0 +1,13 @@
+{
+    "name": "Proversity.org",
+    "description": "Proversity.org Blog",
+    "version": "0.0.1",
+    "engines": {
+        "ghost": ">=0.9.0 <1.0.0"
+    },
+    "author": {
+        "name": "bronsond",
+        "email": "bronson@proversity.org",
+        "url": "https://proversity.org"
+    }
+}

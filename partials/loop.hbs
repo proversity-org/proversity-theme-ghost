@@ -1,0 +1,146 @@
+{{!-- This is the post loop - each post will be output using this markup --}}
+    
+<div id="featurePosts" class="features">
+
+    {{#get "posts" include="tags,author" limit="1" as |recents|}}
+        {{#foreach recents}}
+            <article class="feature-posts" {{#if image}} style='background: url("{{image}}") center;' {{else}} style='background: url("{{asset "images/image.jpg"}}) center;' {{/if}}>
+                
+                <div class="overlay">
+                    <a href="{{url}}">
+                        <section id="{{id}}">
+                            <header class="post-header feature-post-title">
+                                <h2 class="post-title">{{title}}</h2>
+                            </header>
+
+                            <section class="post-meta">
+                                <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMMM YYYY"}}</time>
+                            </section>
+
+                            <section class="post-excerpt">
+                                <p>{{excerpt words="50"}} <a class="read-more" href="{{url}}">...</a></p>
+                            </section>
+                        </section>
+                    </a>
+                </div>
+                
+            </article>
+        {{/foreach}}
+    {{/get}}
+
+    {{!-- <div id="latestPosts" class="row">
+
+        {{#get "posts" include="tags, author" limit="4" as |recents|}}
+            {{#foreach recents from="3"}}
+                {{#is "home"}}
+                    <a href="{{url}}">
+                        <article class="latest-posts" {{#if image}} style='background: url("{{image}}") center;' {{else}} style='background: url("{{asset "images/image.jpg"}}) center;' {{/if}}>
+                            <div class="overlay">
+                                <section id="{{id}}">
+                                    <header class="post-header">
+                                        <h1 class="post-title">{{title}}</h1>
+                                    </header>
+
+                                    <section class="post-meta">
+                                        <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMMM YYYY"}}</time>
+                                    </section>
+
+                                    <section class="post-excerpt">
+                                        <p>{{excerpt words="25"}} <a class="read-more" href="{{url}}">...</a></p>
+                                    </section>
+                                </section>
+                            </div>
+                        </article>
+                    </a>
+                {{/is}}
+            {{/foreach}}
+        {{/get}}
+
+    </div> --}}
+
+</div>
+
+
+<div class="archives" {{#is "paged"}}style="padding-top: 0;"{{/is}}>
+
+    <div class="container">
+
+        {{!-- Previous/next page links - only displayed on page 2+ --}}
+        <div class="extra-pagination inner">
+            {{pagination}}
+        </div>
+
+        {{#is "paged"}}
+            <h1 class="archive-title">From the <span>archive</span></h1>
+        {{else}}
+            <h1>From the <span>archive</span></h1>
+        {{/is}}
+
+        {{#is "home"}}
+            {{#foreach posts from="2"}}
+                <a href="{{url}}">
+                    <div class="row archive-post">
+                        <div class="col-md-6">
+                            {{#if image}}
+                                <img src="{{image}}" class="img-responsive" />
+                            {{else}}
+                                <img src="{{asset "images/image.jpg"}}" class="img-responsive" />
+                            {{/if}}
+                        </div>
+
+                        <div class="col-md-6">
+                            <header class="post-header">
+                                <h2 class="post-title"><a href="{{url}}?archive" class="post-title-link">{{title}}</a></h2>
+                            </header>
+
+                            <section class="post-meta">
+                                <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMMM YYYY"}}</time>
+                                <p>{{excerpt words="25"}} <a class="read-more" href="{{url}}">...</a></p>
+                            </section>
+                        </div>
+                    </div>
+                </a>
+            {{/foreach}}
+        {{/is}}
+
+        {{#is "paged"}}
+            {{#foreach posts from="1"}}
+                <a href="{{url}}">
+                    <div class="row archive-post">
+                        <div class="col-md-6">
+                            {{#if image}}
+                                <img src="{{image}}" class="img-responsive" />
+                            {{else}}
+                                <img src="{{asset "images/image.jpg"}}" class="img-responsive" />
+                            {{/if}}
+                        </div>
+
+                        <div class="col-md-6">
+                            <header class="post-header">
+                                <h2 class="post-title"><a href="{{url}}" class="post-title-link">{{title}}</a></h2>
+                            </header>
+
+                            <section class="post-meta">
+                                <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMMM YYYY"}}</time>
+                                <p>{{excerpt words="25"}} <a class="read-more" href="{{url}}">...</a></p>
+                            </section>
+                        </div>
+                    </div>
+                </a>
+            {{/foreach}}
+        {{/is}}
+
+    </div>
+
+</div>
+
+<div class="pagination-footer">
+    <div class="container">
+        <div class="row">
+            {{!-- Previous/next page links - displayed on every page --}}
+            {{pagination}}
+        </div>
+    </div>
+</div>
+
+
